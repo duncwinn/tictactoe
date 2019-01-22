@@ -6,6 +6,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	a "github.com/tictactoe/algo"
 )
 
 type ticTacToe struct {
@@ -16,6 +18,31 @@ type ticTacToe struct {
 }
 
 func main() {
+
+	retryAgain := true
+
+	for retryAgain == true {
+		fmt.Println("What game do you want to play: TicTacToe [T] or Algo[A]")
+		reader := bufio.NewReader(os.Stdin)
+		text, _ := reader.ReadString('\n')
+		poistion := strings.TrimSuffix(text, "\n")
+
+		if poistion == "A" {
+			a.FindPairsCompareEverything()
+			//a.MyForLoop()
+			//a.HasPairWithSum(8)
+			count := a.Count
+			fmt.Println("Count is ", count)
+
+		} else {
+			playTicTacToe()
+		}
+		retryAgain = false
+	}
+
+} // main
+
+func playTicTacToe() {
 
 	t := ticTacToe{}
 
@@ -45,7 +72,7 @@ func main() {
 		t.myGo(i)
 	}
 
-} // main
+}
 
 func (t *ticTacToe) resetBoard() {
 
